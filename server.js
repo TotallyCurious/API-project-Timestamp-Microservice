@@ -38,7 +38,7 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
     return res.json({unix:'eg',utc:dateNow});
   };
   
-  var date = moment(input,'ddd, DD MMM YYYY');
+  var date = moment(input,'ddd, DD MMM YYYY hh:mm:ss');
   console.log(date);
   
   
