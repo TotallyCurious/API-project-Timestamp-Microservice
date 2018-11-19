@@ -27,7 +27,14 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
   
-  res.json({info: 'timestamp',input:req.params.date_string,output:'meh'});
+  var timeNow = Date();
+  timeNow = timeNow.toLocaleString();
+  
+  res.json({
+    info: 'timestamp',
+    input:req.params.date_string,
+    output:timeNow
+  });
 });
 
 
