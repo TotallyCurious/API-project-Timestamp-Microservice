@@ -29,8 +29,13 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
   var input = req.params.date_string;
       
   if(!input){
+    
     console.log('no-input',input);
-    return res.json({unix:'eg',utc:new Date().toString()});//"ddd, dd MMM yyyy HH:mm:ss GMT")});
+    
+    var dateNow = new Date();
+    dateNow = dateNow.toString('ddd');
+    
+    return res.json({unix:'eg',utc:dateNow});
   
   };
 
