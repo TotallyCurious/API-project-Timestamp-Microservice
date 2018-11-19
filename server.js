@@ -4,6 +4,7 @@
 // init project
 var express = require('express');
 var app = express();
+var moment = require('moment');
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -30,21 +31,14 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
       
   if(!input){
     
-    console.log('no-input',input);
+    console.log('input: ',input);
     
-    var dateNow = new Date();
-    dateNow = dateNow.toString('ddd');
+    var dateNow = new moment();
+    dateNow = dateNow.toString();
     
     return res.json({unix:'eg',utc:dateNow});
   
   };
-
-//   console.log(req.params.date_string.length);
-//   console.log(Date.parse(input));
-  
-//   var timeNow = new Date(input[0],input[1]-1,input[2]).toString();
-//   console.log(timeNow);
-  
   
 //   res.json({
 //     info: 'timestamp',
