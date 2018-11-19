@@ -27,7 +27,11 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
   
+  var input = req.params.date_string.split('-');
+  
   var timeNow = Date();
+  
+  
   timeNow = timeNow.toLocaleString();
   
   res.json({
