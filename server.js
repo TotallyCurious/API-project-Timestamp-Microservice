@@ -26,14 +26,18 @@ app.get("/api/hello", function (req, res) {
 
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
-  console.log(req.params.date_string);
+  
+    if(!input){
+    return res.json({unix:'eg',utc:new Date().toString("ddd, dd MMM yyyy HH:mm:ss GMT")});
+    };
+
+  console.log(req.params.date_string.length);
   var input = req.params.date_string.split('-');
   console.log(Date.parse(input));
   
   var timeNow = new Date(input[0],input[1]-1,input[2]).toString();
   console.log(timeNow);
   
-  // if(!input)timeNow = timeNow.toLocaleString();
   
   res.json({
     info: 'timestamp',
