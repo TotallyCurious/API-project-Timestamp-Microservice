@@ -28,17 +28,22 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
   var input = req.params.date_string;
-      
+  
+  
   if(!input){
-    
-    console.log('input: ',input);
-    
+    // console.log('input: ',input);
     var dateNow = new moment();
     dateNow = dateNow.toString();
     
     return res.json({unix:'eg',utc:dateNow});
-  
   };
+  
+  var date = moment(input,'ddd, DD MMM YYYY');
+  console.log(date);
+  
+  
+  
+  
   
 //   res.json({
 //     info: 'timestamp',
