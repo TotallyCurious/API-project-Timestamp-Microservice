@@ -31,27 +31,19 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
   
   
   if(!input){
-    // console.log('input: ',input);
-    var dateNow = new moment()//.format('ddd, D MMM YYYY hh:mm:ss');
-    // var dateNowUnix = new moment().format('x');
+    var dateNow = new moment()
     var dateNowUnix = dateNow.format('x');
-    dateNow = dateNow.toString()+' GMT';
-    
+    dateNow = dateNow.format('ddd, D MMM YYYY hh:mm:ss').toString()+' GMT';    
     return res.json({unix:dateNowUnix,utc:dateNow});
   };
   
-  var date = moment(input);
+  
+  var date = moment().set(input);
   console.log(date);
   
+  return res.json({unix:date.format('x'),utc:date.format('ddd, D MMM YYYY hh:mm:ss').toString()+' GMT'});
+
   
-  
-  
-  
-//   res.json({
-//     info: 'timestamp',
-//     input:req.params.date_string,
-//     output:timeNow
-//   });
 });
 
 
