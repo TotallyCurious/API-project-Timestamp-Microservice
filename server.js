@@ -37,20 +37,18 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
     return res.json({unix:dateNowUnix,utc:dateNow});
   };
   
-  if(input === (/\d{4}-\d{1,2}-\d{1,2}/g)){
-  var date = moment().set(input);
+  if(input.match(/\d{4}-\d{1,2}-\d{1,2}/g)){
+    input = input.split('-');
+    var date = moment().set({year:input[0],month:input[1],date:input[2],hour:0,minute:0,second:0,millisecond:0});
   console.log(date);
   
-  return res.json({unix:date.format('x'),utc:date.format('ddd, D MMM YYYY hh:mm:ss').toString()+' GMT'});
+    return res.json({unix:date.format('x'),utc:date.format('ddd, D MMM YYYY HH:mm:ss').toString()+' GMT'});
   }
   else{
-      return res.json({error:"Invalid Date"});
-
+    return res.json({error:"Invalid Date"});
   }
   
-  
 });
-
 
 
 // listen for requests :)
