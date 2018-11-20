@@ -32,10 +32,11 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
   
   if(!input){
     // console.log('input: ',input);
-    var dateNow = new moment();
-    dateNow = dateNow.toString();
+    var dateNow = new moment().format('ddd, D MMM YYYY hh:mm:ss');
+    // var dateNowUnix = dateNow.format('x');
+    dateNow = dateNow.toString()+' GMT';
     
-    return res.json({unix:'eg',utc:dateNow});
+    return res.json({unix:dateNowUnix,utc:dateNow});
   };
   
   var date = moment(input);
