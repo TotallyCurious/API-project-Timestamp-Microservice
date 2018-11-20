@@ -28,7 +28,7 @@ app.get("/api/hello", function (req, res) {
 
 app.get("/api/timestamp/:date_string?", function (req, res) {
   var input = req.params.date_string;
-  
+  console.log('input: ',input);
   
   if(!input){
     var dateNow = new moment()
@@ -37,12 +37,17 @@ app.get("/api/timestamp/:date_string?", function (req, res) {
     return res.json({unix:dateNowUnix,utc:dateNow});
   };
   
-  
+  if(input === (/\d{4}-\d{1,2}-\d{1,2}/g)){
   var date = moment().set(input);
   console.log(date);
   
   return res.json({unix:date.format('x'),utc:date.format('ddd, D MMM YYYY hh:mm:ss').toString()+' GMT'});
+  }
+  else{
+      return res.json({error:"Invalid Date"});
 
+  }
+  
   
 });
 
